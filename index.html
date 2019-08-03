@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Study SystemJS</title>
+  <script src="./node_modules/systemjs/dist/system.js"></script>
+  <script type="systemjs-importmap">
+      {
+        "imports": {
+          "lodash": "https://unpkg.com/lodash@4.17.10/lodash.js"
+        }
+      }
+  </script>
+</head>
+<body>
+  <script>
+    console.debug('page loaded');
+    
+    System.import('./app/main.js')
+    .then(function(main){
+      System.import('lodash').then(function(){
+        console.log(repeatStr('sasdsd', 12));
+      });
+
+      console.log('lodash', System.has("lodash"));
+      
+      domUpdater.update('insertHere', 'hello world');
+    });
+  </script>
+  Hi
+  <div id="insertHere"></div>
+</body>
+</html>
